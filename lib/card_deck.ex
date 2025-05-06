@@ -18,5 +18,17 @@ defmodule CardDeck do
   @doc """
   Shuffles the given deck of cards.
   """
+  def shuffle(deck) do
+    Enum.shuffle(deck)
+  end
+
+  @doc """
+  Deals `count` cards from the top of the deck.
+
+  Returns a tuple: `{hand, remaining_deck}
+  """
+  def deal(deck, count) do
+    Enum.split(deck,count)
+  end
 
 end
