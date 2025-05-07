@@ -31,4 +31,31 @@ defmodule CardDeck do
     Enum.split(deck,count)
   end
 
+  @suit_symbols %{
+    hearts: "♥",
+    diamonds: "♦",
+    clubs: "♣",
+    spades: "♠"
+  }
+
+  @doc """
+  Formats a card tuple like {:A, :spades} into a string like "A♠"
+  """
+  def format_card({rank, suit}) do
+    symbol = Map.get(@suit_symbols, suit, "?")
+    "#{rank}#{symbol}"
+  end
+
+  @doc """
+  Prints a deck nicely, 13 cards per line.
+  """
+  def print_deck(deck) do
+    deck
+    |> Enum.map(&format_card/1)
+    |> Enum.chunk_every(13)
+    |> Enum.each(fn row ->
+      IO.puts Enum.join(row, "")
+    end)
+  end
+
 end
